@@ -7,6 +7,8 @@ const mongoose = require('mongoose')
 
 const app = express()
 
+const userRouter = require('./src/router/user-router')
+
 const start = async () => {
   const DB_URL = process.env.DB_URL
   const PORT = process.env.PORT || 5000
@@ -21,5 +23,7 @@ const start = async () => {
 app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
+
+app.use('/user', userRouter)
 
 start()
