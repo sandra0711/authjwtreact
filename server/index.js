@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 const userRouter = require('./src/router/user-router')
+const errorMiddleware = require('./src/middleware/error-middleware')
 
 const start = async () => {
   const DB_URL = process.env.DB_URL
@@ -25,5 +26,7 @@ app.use(cors())
 app.use(cookieParser())
 
 app.use('/user', userRouter)
+
+app.use(errorMiddleware)
 
 start()
