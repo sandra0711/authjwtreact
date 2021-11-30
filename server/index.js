@@ -22,7 +22,11 @@ const start = async () => {
 }
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  credential: true,
+  origin: process.env.CLIENT_URL,
+}
+))
 app.use(cookieParser())
 
 app.use('/user', userRouter)
