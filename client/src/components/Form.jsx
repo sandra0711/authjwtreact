@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Form = (title, handlerClick) => {
+const Form = ({ title, handlerClick }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,7 +18,7 @@ const Form = (title, handlerClick) => {
         onChange={e => setPassword(e.target.value)}
         placeholder='password'
       />
-      <button onClick={handlerClick}>{title}</button>
+      <button onClick={() => handlerClick(email, password)}>{title}</button>
     </div>
   );
 }
