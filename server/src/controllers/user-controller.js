@@ -1,11 +1,12 @@
 require('dotenv').config()
-const userService = require('../service/user-service')
+const UserService = require('../services/user-service')
 const { validationResult } = require('express-validator');
 // const ApiError = require('../exceptions/api-error');
 
 class UserController {
 
   async registration(req, res, next) {
+    console.log('Ура пришла!!!');
     try {
       const errors = validationResult(req);
       // if (!errors.isEmpty()) {

@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 
 const app = express()
 
-// const userRouter = require('./src/router/user-router')
+const userRouter = require('./src/routes/user-router')
 // const errorMiddleware = require('./src/middleware/error-middleware')
 
 const start = async () => {
@@ -30,7 +30,7 @@ app.use(express.json())
 app.use(cors())
 app.use(cookieParser())
 
-// app.use('/user', userRouter)
+app.use('/user', userRouter)
 
 // app.use(errorMiddleware)
 
