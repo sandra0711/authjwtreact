@@ -24,25 +24,18 @@ export const addNewUser = createAsyncThunk(
   },
 );
 
-
 const userSlice = createSlice({
   name: 'userSlice',
   initialState: {
     email: null,
-    token: null,
-    id: null
   },
   reducers: {
     setUser(state, action) {
-      state.email = action.payload.email;
-      // state.token = action.payload.token;
-      // state.id = action.payload.id;
+      state.email = action.payload.user.email;
     },
 
     removeUser(state) {
       state.email = null;
-      state.token = null;
-      state.id = null;
     }
   }
 });

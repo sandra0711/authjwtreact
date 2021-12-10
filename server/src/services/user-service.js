@@ -3,16 +3,14 @@ const uuid = require('uuid')
 // const ApiError = require('../exceptions/api-error')
 
 const User = require('../models/user-model');
-// const Token = require('../models/token-model');
 const MailService = require('./mailService')
-const tokenService = require('./tokenService')
+const TokenService = require('./tokenService')
 
 class UserService {
   async registration(email, password) {
     const candidate = await User.findOne({ email });
     // if (candidate) throw ApiError.BadRequest('Такой email уже зарегистрирован в системе');
     const hashPass = await bcrypt.hash(password, 7);
-    console.log(hashPass)
     const activatedLink = uuid.v4();
     const user = await User.create({ email, password: hashPass, activatedLink });
     await MailService.sendActivationMail(email, activatedLink);
