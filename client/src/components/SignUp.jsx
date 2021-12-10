@@ -6,8 +6,7 @@ import { addNewUser } from '../store/slicers/userSlice';
 const Signup = () => {
   const dispatch = useDispatch();
   const handlerSignup = (email, password) => {
-    console.log(email, password);
-    dispatch(addNewUser(email, password));
+    dispatch(addNewUser({ email, password }));
   };
   return (
     <div>
