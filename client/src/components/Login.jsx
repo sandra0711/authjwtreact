@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../store/slicers/userSlice';
 import Form from './Form';
+import { loginUser } from '../store/slicers/userSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
   const handleLogin = (email, password) => {
-    console.log(email, password)
+    dispatch(loginUser({ email, password }));
   }
   return (
     <div>

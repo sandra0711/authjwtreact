@@ -1,9 +1,14 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../store/slicers/userSlice';
 
 const Homepage = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
   return (
-    <Navigate replace to="/login" />
+    <button onClick={() => handleLogout()}>Выйти</button>
   );
 }
 

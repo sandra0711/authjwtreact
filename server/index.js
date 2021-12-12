@@ -1,14 +1,14 @@
 require('dotenv').config()
 
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 
 const app = express()
 
-const userRouter = require('./src/routes/user-router')
-// const errorMiddleware = require('./src/middleware/error-middleware')
+const cors = require('cors');
+const userRouter = require('./src/routes/user-router');
+const errorMiddleware = require('./src/middlewares/error-middleware');
 
 const start = async () => {
   const DB_URL = process.env.DB_URL
@@ -21,17 +21,14 @@ const start = async () => {
   }
 }
 
-app.use(express.json())
-// app.use(cors({
-//   credential: true,
-//   origin: process.env.CLIENT_URL,
-// }
-// ))
-app.use(cors())
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 
+app.use(errorMiddleware)
 app.use('/user', userRouter)
-
-// app.use(errorMiddleware)
 
 start()
